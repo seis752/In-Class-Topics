@@ -1,0 +1,19 @@
+module.exports = function (grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json')
+  });
+
+  // Load plugins.
+
+  // Default task(s).
+  grunt.registerTask('default', []);
+
+  // Let's define a "basic task" (doesn't need configuration).
+  grunt.registerTask('hello', 'Write "Hello World!" to console.',
+    function() {
+    grunt.log.writeln('Hello World! This is the "hello" task.');
+  });
+
+};
