@@ -1,0 +1,69 @@
+<title>Sample AngularJS</title>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+
+<script>
+function MoneyController($scope) {
+  $scope.invisible = true;
+  $scope.toggleButtonText = 'Show me the money!';
+
+  $scope.toggle = function() {
+    $scope.invisible = !$scope.invisible;
+    $scope.toggleButtonText = $scope.invisible ? 'Show me the money!' : 'Put money away';
+  };
+}
+
+function ImageController($scope) {
+  $scope.visible = false;
+
+  $scope.toggle = function() {
+    $scope.visible = !$scope.visible;
+  };
+}
+</script>
+
+<html>
+
+<body>
+
+<div ng-app="">
+
+
+Write some text in textbox:
+<input type="text" ng-model="sometext">
+
+Write some numbers in textbox:
+<input type="text" ng-model="somenumber">
+
+<br>
+<br>
+Add 2 numbers...
+<br>
+Add <input type="number" ng-model="number1"> + <input type="number" ng-model="number2"> = {{number1 + number2 }}
+<br>
+<br>
+
+<h1>{{ sometext }}</h1>
+
+<h2>Uppercase: {{ sometext | uppercase }}</h2>
+<h2>Lowercase: {{ sometext | lowercase }}</h2>
+
+<h2>Number: {{ somenumber | number : 4}}</h2>
+
+<div ng-controller="MoneyController">
+  <button ng-click="toggle()">{{toggleButtonText}}</button>
+  <h2><p ng-hide="invisible">Money: {{ somenumber | currency : '$' : 2}}</p></h2>
+</div>
+
+<div ng-controller="ImageController">
+  <button ng-click="toggle()">Toggle</button>
+  <p ng-show="visible"><img style="height:200;width:150px;" src="ust_mascot.jpg" /></p>
+</div>
+
+<br><br><br>
+<h6>Note: starting point for code example was from http://viralpatel.net/blogs/angularjs-introduction-hello-world-tutorial </h6>
+
+</div>
+
+</body>
+</html>
