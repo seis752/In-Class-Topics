@@ -1,0 +1,11 @@
+/* thing.css */
+
+.thing {
+  display: block;
+  background: #888;
+}
+
+.thing a {
+  color: #f90;
+  text-decoration: none;
+}

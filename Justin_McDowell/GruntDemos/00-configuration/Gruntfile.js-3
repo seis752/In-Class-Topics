@@ -1,0 +1,58 @@
+module.exports = function (grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    clean: {
+      build: ['build'],
+      release: ['release']
+    },
+    copy: {
+      build: {
+        files: [
+          {
+            expand: true,
+            cwd: 'src',
+            src: [
+              'files/**/*'
+            ],
+            dest: 'build/',
+            filter: 'isFile'
+          }
+        ]
+      },
+      release: {
+        files: [
+          {
+            expand: true,
+            cwd: 'src',
+            src: [
+              'files/**/*',
+              '!**/*.bak'
+            ],
+            dest: 'release/',
+            filter: 'isFile'
+          }
+        ]
+      }
+    }
+  });
+
+  // Load plugin.
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+
+  // Default task(s).
+  grunt.registerTask('default', ['hello', 'goodbye']);
+  grunt.registerTask('build', ['clean:build', 'copy:build']);
+  grunt.registerTask('release', ['clean', 'copy:release']);
+
+  grunt.registerTask('hello', 'Write "Hello World!" to console.', function() {
+    grunt.log.writeln('Hello World! This is the "hello" task.');
+  });
+
+  grunt.registerTask('goodbye', 'Write "Goodbye." to console.', function() {
+    grunt.log.writeln('Goodbye.');
+  });
+
+};
